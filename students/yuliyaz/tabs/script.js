@@ -20,4 +20,16 @@ $(document).ready(function () {
         return false;
     });
 
+    $.getJSON('http://rs.hankyates.com:3000/content', function(data){
+            home = data.home;
+            articles = data.articles
+            portfolio = data.portfolio
+    $.each(data, function(key, value){
+    $('#home').html(home);
+    $('#articles').html(articles);
+    $('#portfolio').html(portfolio);
+  });
+});
+
+
 });
