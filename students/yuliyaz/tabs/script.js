@@ -1,10 +1,29 @@
 $(document).ready(function () {
+    $.getJSON('http://rs.hankyates.com:3000/content', function(data){
+            //home = data.home;
+            //articles = data.articles
+            //portfolio = data.portfolio
+    //$.each(data, function(key, value){
+    //$('#home').html(home);
+    //$('#articles').html(articles);
+    //$('#portfolio').html(portfolio);
+   $.each(data, function(key, value){
+    //$(".tab_content_container").append(value);
+
+    //$('<div/>', {
+   //id: key,
+   //class: "tab_content",
+  //text: value
+//}).appendTo(".tab_content_container")
+$(".tabs").append("<li><a href = #"+key +">"+key+"</a></li>");
+$(".tab_content_container").append("<div class= 'tab_content', id = " + key +">"+value+"</div>");
+  });
 
     //When page loads...
-    $("ul.tabs li:first-child a").addClass("active").show(); //Activate first tab
-   //$(".tab_content #articles").hide(); //Show first tab content
-   //$(".tab_content #portfolio").hide(); //Show first tab content
-    $(".tab_content_container #home").show(); //Show first tab content
+$("ul.tabs li:first-child a").addClass("active").show(); //Activate first tab
+   //$(".tab_content #articles").hide(); //hide articles tab content
+   //$(".tab_content #portfolio").hide(); //hide portfolio tab content
+    $(".tab_content:first-child").show(); //Show first tab content
 
     //On Click Event
     $("ul.tabs li a").click(function () {
@@ -20,15 +39,6 @@ $(document).ready(function () {
         return false;
     });
 
-    $.getJSON('http://rs.hankyates.com:3000/content', function(data){
-            home = data.home;
-            articles = data.articles
-            portfolio = data.portfolio
-    $.each(data, function(key, value){
-    $('#home').html(home);
-    $('#articles').html(articles);
-    $('#portfolio').html(portfolio);
-  });
 });
 
 
