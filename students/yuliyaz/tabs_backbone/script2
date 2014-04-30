@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+var Tabs = Backbone.View.extend({
+  template: JST['tabs'],
+
+  events: {
+    'click li' : 'switchTab'
+  },
+
+  tagName: 'ul',
+
+  className: 'nav-tabs',
+
+  render: function() {
+    this.renderTabs();
+    return this;
+  },
+
+  renderTabs: function() {
+    this.$el.html(this.template({ cities: this.cities }));
+    this.$('li:first').addClass('active');
+  },
+
+  switchTab: function(event) {
+    var selectedTab = event.currentTarget;
+    this.$('li.active').removeClass('active');
+    this.$(selectedTab).addClass('active');
+  }
+});
