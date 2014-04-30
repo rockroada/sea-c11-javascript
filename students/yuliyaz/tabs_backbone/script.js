@@ -1,3 +1,37 @@
+var TabModel = Backbone.Model.extend({});
+var TabCollection = Backbone.Collection.extend({
+model: TabModel,
+url: 'http://rs.hankyates.com:3000/v2/content'
+});
+var tabs = new TabCollection();
+tabs.fetch;
+var TabView = Backbone.View.extend({
+    model: TabModel. 
+    collection = tabs, 
+    tagName: 'li',
+    el: '.tabs',
+    template: _.template("<li class = 'tabs'><a href = #<%= name %> >name</a></li>")
+    }, 
+  
+
+      // It's the first function called when this view it's instantiated.
+    initialize: function(){
+        this.render();
+    render: function(){
+    var self = this;
+    this.collection.each(function(tab){
+        var renderedTemplate = _.template(self.template, self.tab.attributes);
+        self.$el.append(renderedTemplate);
+    })
+    }
+});
+
+
+var tabView = new TabView({model: tabs})
+
+
+
+/
 $(document).ready(function () {
     $.getJSON('http://rs.hankyates.com:3000/content', function(data){
         $.each(data, function(key, value){
@@ -27,38 +61,5 @@ $(document).ready(function () {
 
 
 });
-
-
-var TabModel = Backbone.Model.extend({});
-var TabCollection = Backbone.Collection.extend({
-model: TabModel,
-url: 'http://rs.hankyates.com:3000/v2/content'
-});
-var tabs = new TabCollection();
-tabs.fetch;
-var TabView = Backbone.View.extend({
-    model: TabModel. 
-    collection = tabs, 
-    tagName: 'li',
-    template: "<li class = 'tabs'><a href = #<%= name %> >name</a></li>"
-    }, 
-    tagName: 'li',
-    className: 'tabs',
-
-    render: function(){
-    var self = this;
-    this.collection.each(function(tab){
-        var renderedTemplate = _.template(self.template, self.tab.attributes);
-        self.$el.append(renderedTemplate);
-    })
-    }
-});
-
-
-var tabView = new TabView({model: tabs})
-
-
-
-
 
 
